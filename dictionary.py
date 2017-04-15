@@ -1,4 +1,5 @@
 import csv
+import sys
 
 
 def read(filename, dictionary):
@@ -30,11 +31,18 @@ print('4. show available definitions by first letter of appellation')
 print('0. exit')
 menu = int(input('Chose a number: '))
 
-if menu == menu_tuple[1]:
+while menu not in menu_tuple:
+    print("Wrong number!")
+    menu = int(input('Chose a number: '))
+
+if menu == menu_tuple[0]:
+    sys.exit()
+
+elif menu == menu_tuple[1]:
     appelation_search = input("Write appelation: ")
     if appelation_search in dictionary:
         explanation = (dictionary[appelation_search])
-        print(explanation[0], '\nsource:', explanation[1])
+        print('description:%s' % explanation[0], '\nsource:%s' % explanation[1])
     else:
         print("I cant find what you are looking for")
 elif menu == menu_tuple[2]:
@@ -49,3 +57,9 @@ elif menu == menu_tuple[2]:
 
 if menu == menu_tuple[3]:  # show all appellations alphabetically
     appellations_alphabeticall(dictionary)
+
+if menu == menu_tuple[4]:
+    first_letter = input("Write first letter of appellations: ")
+    for keys in dictionary.keys():
+        if first_letter in keys[0]:
+            print(dictionary[keys][0])
