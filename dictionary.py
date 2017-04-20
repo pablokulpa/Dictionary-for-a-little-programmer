@@ -28,7 +28,7 @@ def appellations_alphabeticall(dictionary):
 
 # adding to dictionary and saving to file
 def adding(dictionary):
-    new_key = input("Please write definitions: ")
+    new_key = input("Please write definitions: ").lower()
     new_description = input("Please write description: ")
     new_source = input("Please write source: ")
     dictionary[new_key] = new_description, new_source
@@ -39,7 +39,7 @@ def adding(dictionary):
 
 
 def by_appelation(dictionary):
-    appelation_search = input("Write appelation: ")
+    appelation_search = input("Write appelation: ").lower()
     if appelation_search in dictionary:
         explanation = (dictionary[appelation_search])
         print('description:%s' % explanation[0], '\nsource:%s' % explanation[1])
@@ -49,9 +49,9 @@ def by_appelation(dictionary):
 
 # Finding by firts letter of appelations
 def by_letter(dictionary):
-    first_letter = input("Write first letter of appellations: ")
+    first_letter = input("Write first letter of appellations: ").lower()
     while len(first_letter) > 1:
-        first_letter = input("Write first letter of appellations: ")
+        first_letter = input("Write first letter of appellations: ").lower()
     for keys in dictionary.keys():
         if first_letter in keys[0]:
             print(dictionary[keys][0])
