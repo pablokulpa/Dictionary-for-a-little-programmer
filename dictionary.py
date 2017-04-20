@@ -38,7 +38,26 @@ def adding(dictionary):
             my_writer.writerow([key]+[value[0]]+[value[1]])
 
 
-csvname = 'names.csv'
+def by_appelation(dictionary):
+    appelation_search = input("Write appelation: ")
+    if appelation_search in dictionary:
+        explanation = (dictionary[appelation_search])
+        print('description:%s' % explanation[0], '\nsource:%s' % explanation[1])
+    else:
+        print("I cant find what you are looking for")
+
+
+# Finding by firts letter of appelations
+def by_letter(dictionary):
+    first_letter = input("Write first letter of appellations: ")
+    while len(first_letter) > 1:
+        first_letter = input("Write first letter of appellations: ")
+    for keys in dictionary.keys():
+        if first_letter in keys[0]:
+            print(dictionary[keys][0])
+
+
+csvname = 'names.csv'   # file with database csv
 dictionary = {}
 checking_file(csvname)
 menu_tuple = (0, 1, 2, 3, 4)
@@ -59,16 +78,14 @@ while menu not in menu_tuple:
     print("Wrong number!")
     menu = int(input('Chose a number: '))
 
+
+# Menu Chose
 if menu == menu_tuple[0]:
     sys.exit()
 
 elif menu == menu_tuple[1]:
-    appelation_search = input("Write appelation: ")
-    if appelation_search in dictionary:
-        explanation = (dictionary[appelation_search])
-        print('description:%s' % explanation[0], '\nsource:%s' % explanation[1])
-    else:
-        print("I cant find what you are looking for")
+    by_appelation(dictionary)
+
 elif menu == menu_tuple[2]:
     adding(dictionary)
 
@@ -76,9 +93,4 @@ elif menu == menu_tuple[3]:  # show all appellations alphabetically
     appellations_alphabeticall(dictionary)
 
 elif menu == menu_tuple[4]:
-    first_letter = input("Write first letter of appellations: ")
-    while len(first_letter) > 1:
-        first_letter = input("Write first letter of appellations: ")
-    for keys in dictionary.keys():
-        if first_letter in keys[0]:
-            print(dictionary[keys][0])
+    by_letter(dictionary)
